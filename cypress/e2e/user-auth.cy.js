@@ -1,4 +1,6 @@
 import { faker } from '@faker-js/faker';
+import LeftSideMenuPage from '../pages/LeftSideMenuPage';
+import RegisterPage from '../pages/RegisterPage';
 
 describe("User auth test suite", () => {
   beforeEach(() => {
@@ -24,11 +26,6 @@ describe("User auth test suite", () => {
   });
 
   it("Login with invalid creds", () => {
-    // cy.get("#forms").click();
-    // cy.get('a[href="login.html"]').click();
-    // cy.get("#email").type("admin@admin.com");
-    // cy.get("#password").type("parolagresita");
-    // cy.get("#submitLoginBtn").click();
     cy.login('admin@admin.com', 'parola gresita');
     cy.get("#message").should("be.visible");
     cy.get("#message").should(
@@ -42,16 +39,16 @@ describe("User auth test suite", () => {
   });
 
   it("Register user test", () => {
-    cy.get("#forms").click();
-    cy.get("#register").click();
-    cy.get("#firstName").type("Georgiana");
-    cy.get("#lastName").type("Barsan");
-    cy.get("#phone").type("0747263823");
-    cy.get("select").select("Albania");
-    cy.get('input[type="email"]').type("georgiana96@gmail.com");
-    cy.get('input[type="password"]').type("Georgiana123");
-    cy.get("#exampleCheck1").click();
-    cy.get("button").contains("Register").click();
+    LeftSideMenuPage.getForms().click();
+    LeftSideMenuPage.getRegisterFormLink().click();
+    RegisterPage.getFirstName().type("Georgiana");
+    RegisterPage.getLastName().type("Barsan");
+    RegisterPage.getPhoneNumber().type("0747263823");
+    RegisterPage.getSelectCuntry("Albania");
+    RegisterPage.getEmail().type("georgiana96@gmail.com");
+    RegisterPage.getPassword().type("Georgiana123");
+    RegisterPage.getTermsAndCondsCheckbox().click();
+    RegisterPage.getRegisterButton().click();
     cy.contains("The account has been successfully created!").should(
       "be.visible"
     );
@@ -60,7 +57,7 @@ describe("User auth test suite", () => {
   it("Register user with random creds test", () => {
     const randomLastName = faker.person.lastName();
 
-    cy.get("#forms").click();
+    LeftSideMenuPage.getForms().click();
     cy.get("#register").click();
     cy.get("#firstName").clear().type(faker.person.firstName());
     cy.get("#lastName").type(randomLastName);

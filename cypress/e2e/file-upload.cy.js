@@ -1,16 +1,18 @@
+import LeftSideMenuPage from "../pages/LeftSideMenuPage";
+import FileUploadPage from "../pages/FileUploadPage";
 
 describe("File upload test suite", () => {
-    beforeEach(() => {
-      cy.visit("https://qa-practice.netlify.app");
-    });
-    it("File upload test", () => {
-        const fileName = "logo.PNG";
-
-      cy.get("#file-upload-item").click();
-      cy.get('#file_upload').selectFile('cypress/fixtures/'+fileName);
-      cy.get('button').contains('Submit').click();
-      cy.contains(`You have successfully uploaded "${fileName}"`).should(
-        'be.visible');
-    });
+  beforeEach(() => {
+    cy.visit("https://qa-practice.netlify.app");
   });
-  
+  it("File upload test", () => {
+    const fileName = "logo.PNG";
+    
+    LeftSideMenuPage.getFileUpload().click();
+    FileUploadPage.getChoseFile().selectFile("cypress/fixtures/" + fileName);
+    FileUploadPage.getSubmitButton().click();
+    cy.contains(`You have successfully uploaded "${fileName}"`).should(
+      "be.visible"
+    );
+  });
+});
