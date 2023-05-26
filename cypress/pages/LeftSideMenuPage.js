@@ -13,6 +13,9 @@ class LeftSideMenuPage {
   getRegisterFormLink(){
     return cy.get("#register");
   }
+  getRecoverPasswordFormLink(){
+    return cy.get("#recover-password");
+  }
 }
 
 export default new LeftSideMenuPage();
