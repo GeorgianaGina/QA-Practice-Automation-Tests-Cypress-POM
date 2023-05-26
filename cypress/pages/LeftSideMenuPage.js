@@ -16,6 +16,16 @@ class LeftSideMenuPage {
   getRecoverPasswordFormLink(){
     return cy.get("#recover-password");
   }
+  getButtons(){
+    return cy.get("a[href='#pageSubmenu']");
+  }
+  getCheckboxesLink(){
+    return cy.get("a[href='checkboxes.html']");
+  }
+  getRadioButtonsLink(){
+    return cy.get("#radio-buttons");
+  }
+  
 }
 
 export default new LeftSideMenuPage();

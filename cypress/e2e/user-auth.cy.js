@@ -1,6 +1,8 @@
-import { faker } from '@faker-js/faker';
-import LeftSideMenuPage from '../pages/LeftSideMenuPage';
-import RegisterPage from '../pages/RegisterPage';
+/// <reference types = "cypress" />
+import { faker } from "@faker-js/faker";
+import LeftSideMenuPage from "../pages/LeftSideMenuPage";
+import RegisterPage from "../pages/RegisterPage";
+import RecoverPasswordPage from "../pages/RecoverPasswordPage";
 
 describe("User auth test suite", () => {
   beforeEach(() => {
@@ -8,12 +10,7 @@ describe("User auth test suite", () => {
   });
 
   it("Login with valid creds", () => {
-    // cy.get("#forms").click();
-    // cy.get('a[href="login.html"]').click();
-    // cy.get("#email").type("admin@admin.com");
-    // cy.get("#password").type("admin123");
-    // cy.get("#submitLoginBtn").click();
-    cy.login('admin@admin.com', 'admin123');
+    cy.login("admin@admin.com", "admin123");
     cy.get("#message").should("be.visible");
     cy.get("#message").should(
       "contain",
@@ -26,7 +23,7 @@ describe("User auth test suite", () => {
   });
 
   it("Login with invalid creds", () => {
-    cy.login('admin@admin.com', 'parola gresita');
+    cy.login("admin@admin.com", "parola gresita");
     cy.get("#message").should("be.visible");
     cy.get("#message").should(
       "contain",
@@ -63,12 +60,23 @@ describe("User auth test suite", () => {
     cy.get("#lastName").type(randomLastName);
     cy.get("#phone").type("0747263823");
     cy.get("select").select("Albania");
-    cy.get('input[type="email"]').type(randomLastName+"."+ faker.internet.email());
+    cy.get('input[type="email"]').type(
+      randomLastName + "." + faker.internet.email()
+    );
     cy.get('input[type="password"]').type("Georgiana123");
     cy.get("#exampleCheck1").click();
     cy.get("button").contains("Register").click();
     cy.contains("The account has been successfully created!").should(
       "be.visible"
     );
+  });
+  it("Recover password test", () => {
+    LeftSideMenuPage.getForms().click();
+    LeftSideMenuPage.getRecoverPasswordFormLink().click();
+    RecoverPasswordPage.getEmail().type("admin@admin.com");
+    RecoverPasswordPage.getRecoverPasswordButton().click();
+    cy.contains(
+      "An email with the new password has been sent to admin@admin.com. Please verify your inbox!"
+    ).should("be.visible");
   });
 });

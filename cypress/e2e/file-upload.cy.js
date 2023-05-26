@@ -1,3 +1,4 @@
+/// <reference types = "cypress" />
 import LeftSideMenuPage from "../pages/LeftSideMenuPage";
 import FileUploadPage from "../pages/FileUploadPage";
 
