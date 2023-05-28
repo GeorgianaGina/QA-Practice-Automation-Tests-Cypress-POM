@@ -43,6 +43,7 @@ class LeftSideMenuPage {
   getScrollingLink(){
     return cy.get("#scrolling");
   }
+  
 }
 
 export default new LeftSideMenuPage();
