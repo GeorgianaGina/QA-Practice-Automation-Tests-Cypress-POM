@@ -32,13 +32,16 @@ class LeftSideMenuPage {
     return cy.get("a[href='tab.html']");
   }
   getNewBrowserWindowLink(){
-    return cy.get("a[href='window.html']")
+    return cy.get("a[href='window.html']");
   }
   getBtnActions(){
-    return cy.get("#actions")
+    return cy.get("#actions");
   }
   getDoubleClickBtnLink(){
-    return cy.get('#double-click')
+    return cy.get('#double-click');
+  }
+  getScrollingLink(){
+    return cy.get("#scrolling");
   }
 }
 
