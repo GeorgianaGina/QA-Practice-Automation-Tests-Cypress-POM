@@ -1,6 +1,7 @@
 /// <reference types = "cypress" />
 import LeftSideMenuPage from "../pages/LeftSideMenuPage";
 import SwitchToANewBrowserTabPage from "../pages/SwitchToANewBrowserTabPage";
+import SwitchToANewBrowserWindowPage from "../pages/SwitchToANewBrowserWindowPage";
 
 describe("New tab/window test suite", () => {
   beforeEach(() => {
@@ -11,5 +12,11 @@ describe("New tab/window test suite", () => {
     LeftSideMenuPage.getNewTabWindow().click();
     LeftSideMenuPage.getNewBrowserLink().click();
     SwitchToANewBrowserTabPage.getSubmitButton();
+  });
+
+  it("New browser window test", () => {
+    LeftSideMenuPage.getNewTabWindow().click();
+    LeftSideMenuPage.getNewBrowserWindowLink().click();
+    SwitchToANewBrowserWindowPage.getSubmitButton();
   });
 });

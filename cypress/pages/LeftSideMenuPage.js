@@ -31,6 +31,9 @@ class LeftSideMenuPage {
   getNewBrowserLink(){
     return cy.get("a[href='tab.html']");
   }
+  getNewBrowserWindowLink(){
+    return cy.get("a[href='window.html']")
+  }
 }
 
 export default new LeftSideMenuPage();
