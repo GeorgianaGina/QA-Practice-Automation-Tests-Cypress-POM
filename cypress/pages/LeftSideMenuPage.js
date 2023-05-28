@@ -34,6 +34,12 @@ class LeftSideMenuPage {
   getNewBrowserWindowLink(){
     return cy.get("a[href='window.html']")
   }
+  getBtnActions(){
+    return cy.get("#actions")
+  }
+  getDoubleClickBtnLink(){
+    return cy.get('#double-click')
+  }
 }
 
 export default new LeftSideMenuPage();
