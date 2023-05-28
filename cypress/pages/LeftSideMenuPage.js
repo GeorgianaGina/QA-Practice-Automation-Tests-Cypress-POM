@@ -25,7 +25,12 @@ class LeftSideMenuPage {
   getRadioButtonsLink(){
     return cy.get("#radio-buttons");
   }
-  
+  getNewTabWindow(){
+    return cy.get("a[href='#browserSubmenu']");
+  }
+  getNewBrowserLink(){
+    return cy.get("a[href='tab.html']");
+  }
 }
 
 export default new LeftSideMenuPage();
